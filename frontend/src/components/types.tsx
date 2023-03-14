@@ -1,8 +1,8 @@
 export type FlightItem = {
-    origin: string,
-    destination: string,
-    date: string,
-    price: number,
+    origin: string | undefined,
+    destination: string | undefined,
+    date: string | undefined,
+    price: number | undefined,
 }
 
 export interface FlightItemDB extends FlightItem {

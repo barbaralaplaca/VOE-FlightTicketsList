@@ -21,10 +21,11 @@ const getList = async (req: Request, res: Response): Promise<any> => {
 
 const createFlightItem = async (req: Request, res: Response) => {
     try {
-        const { origin, destination, date, price } = req.body;
+        const { origin, destination, date, price, _id } = req.body;
         const flight = await FlightSearch.create({ origin, destination, date, price });
         res
-        .status(200)
+        .set('location', `/api/flights/${_id}`)
+        .status(201)
         .header('Content-Type: application/json')
         .json(flight);
     } catch (error) {
@@ -32,7 +33,7 @@ const createFlightItem = async (req: Request, res: Response) => {
     }
 }
 
-const deleteList = async (req: Request, res: Response) => {
+const deleteItem = async (req: Request, res: Response) => {
     try{
         const { id } = req.params;
 
@@ -58,14 +59,4 @@ const deleteList = async (req: Request, res: Response) => {
 }
 }
 
-// const deleteItem = async (req: Request, res: Response) => {
-//     try {
-        
-//     } catch (error) {
-//         res.status(500).json({ error })
-//     }
-// }
-    // delete one item in list
-    // delete whole list
-
-export { getList, createFlightItem, deleteList };
+export { getList, createFlightItem, deleteItem };

@@ -35,7 +35,9 @@ export const Searchbar = () => {
         altera o state para uma <b>LIST</b> com diversos <b>ITENS</b> cada um contendo: origin, destination, date and price.
         Ou seja, o state e o empty array que muda para a lista, os items vao ser o resultado de um map na lista. Cada item tem um botao 
         <b>ADD</b> que vai acionar o <b>POST METHOD</b></p>
-        <button onClick={() => postApi()}>Search</button>
+        <button 
+            className='search-button'
+            onClick={() => postApi()}>Search</button>
         <SearchResults fetchedData={search} />
     </div>
   )

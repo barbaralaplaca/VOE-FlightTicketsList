@@ -1,14 +1,10 @@
-.db-list-container {
+.api-list-container {
     margin: 2em;
     display: flex;
     flex-direction: column;
 }
 
-.db-list-title {
-    color: #240747;
-}
-
-.db-list-item {
+.api-ticket-card {
     margin: 1em;
     display: flex;
     background-color: #c9fdd7;
@@ -20,12 +16,20 @@
     max-width: 450px;
 }
 
-.db-list-item p {
+.api-ticket-card p {
     display: flex;
     flex-wrap: wrap;
 }
 
-.delete-item-button {
+.add-item-button {
+    margin: 1em;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #c9fdd7;
+    border: 3px solid #79d1c3;
+}
+
+.search-button {
     margin: 1em;
     padding: 5px;
     border-radius: 5px;
