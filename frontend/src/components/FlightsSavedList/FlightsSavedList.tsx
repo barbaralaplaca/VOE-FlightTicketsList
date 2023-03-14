@@ -1,7 +1,7 @@
 // DELETE ITEM
 // DELETE LIST
 
-import React from 'react'
+import React, { useState } from 'react'
 import { FlightItemDB } from '../types'
 import './FlightSavedList.css'
 
@@ -11,15 +11,18 @@ type FlightsSavedListProps = {
 
 export const FlightsSavedList = (props: FlightsSavedListProps) => {
   const { list } = props;
+  const [itemsList, setItemsList] = useState(list);
+
   const deleteItem = (id: string) => {
-    // const itemToDelete = list.find(item => item._id === id);
+    const itemToDelete = list.filter(item => item._id !== id);
+    setItemsList(itemToDelete);
     fetch(`/api/flights/${id}`, { method: 'DELETE' });
   }
 
   return (
     <div className='db-list-container'>
       <h2 className='db-list-title'>Your Saved List</h2>
-        {list.map(item => (
+        {itemsList.map(item => (
           <div key={item._id} className='db-list-item'>
             <p><b>Origin</b>{item.origin}</p>
             <p><b>Destination</b>{item.destination}</p>

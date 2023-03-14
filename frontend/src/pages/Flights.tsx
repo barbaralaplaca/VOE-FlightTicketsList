@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
-import { FlightsSavedList } from '../components/FlightsSavedList/FlightsSavedList'
 import { Searchbar } from '../components/Searchbar/SearchBar'
+import { FlightItemDB } from '../components/types'
 
 export const Flights = () => {
-  const [savedFlightsList, setSavedFlightsList] = useState([]);
+  const [savedFlightsList, setSavedFlightsList] = useState<FlightItemDB[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchListDB = async () => {
@@ -11,6 +12,7 @@ export const Flights = () => {
       const json = await response.json();
       if (response.ok) {
         setSavedFlightsList(json);
+        setIsLoading(false);
       }
     }
     fetchListDB();
@@ -18,8 +20,11 @@ export const Flights = () => {
 
   return (
     <div>
-      <Searchbar />
-      <FlightsSavedList list={savedFlightsList}/>
+      { !isLoading &&
+       <Searchbar 
+        flightsList={savedFlightsList}
+        />
+      }
     </div>
   )
 }

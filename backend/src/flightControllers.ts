@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import mongoose from 'mongoose';
-import { FlightSearch } from "./Flights";
+import { FlightSearch } from "./FlightsModel";
 
 const getList = async (req: Request, res: Response): Promise<any> => {
     try {

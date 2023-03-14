@@ -30,3 +30,35 @@ export type FetchedData = {
     IndirectQuoteDateTime: string,
     DirectQuoteDateTime: string
 }
+
+
+export type countryCode = {
+    datasetid: string,
+    recordid: string,
+    fields:{
+        label_sp: string,
+        onu_code: string,
+        is_ilomember:string,
+        geo_point_2d:[],
+        iso2_code:string,
+        iso3_code:string,
+        label_fr:string,
+        official_lang_code:string,
+        label_en:string,
+        is_receiving_quest:string,
+        geo_shape:{
+            coordinates:[],
+            type:string
+            }
+    },
+    geometry:{
+        type:string,
+        coordinates:[]
+        },
+    record_timestamp: string,
+}
+
+export type Option = {
+    value: string,
+    label: string
+}
