@@ -3,6 +3,7 @@
 
 import React from 'react'
 import { FlightItemDB } from '../types'
+import './FlightSavedList.css'
 
 type FlightsSavedListProps = {
   list: FlightItemDB[],
@@ -10,9 +11,9 @@ type FlightsSavedListProps = {
 
 export const FlightsSavedList = (props: FlightsSavedListProps) => {
   return (
-    <div>
+    <div className='flight-container'>
         {props.list.map(item => (
-          <div key={item._id}>
+          <div key={item._id} className='flight-item'>
             <p>{item.destination}</p>
             <p>{item.origin}</p>
             <p>{item.date}</p>

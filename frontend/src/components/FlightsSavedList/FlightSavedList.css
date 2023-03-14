@@ -1,0 +1,8 @@
+.flight-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.flight-item {
+    display: flex;
+}

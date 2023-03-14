@@ -12,3 +12,21 @@ export interface FlightItemDB extends FlightItem {
     __v: number,
 }
 
+export type SearchResults = {
+    price: number,
+    link: string,
+}
+
+export type FetchedData = {
+    Id: string,
+    Direct: boolean,
+    Name: string,
+    CountryName: string,
+    ImageUrl: string,
+    DirectPrice: number,
+    IndirectPrice: number,
+    HotelUrl: string,
+    HotelPrice: number,
+    IndirectQuoteDateTime: string,
+    DirectQuoteDateTime: string
+}
