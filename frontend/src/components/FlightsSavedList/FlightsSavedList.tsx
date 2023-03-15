@@ -1,7 +1,7 @@
 // DELETE ITEM
 // DELETE LIST
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FlightItemDB } from '../types'
 import './FlightSavedList.css'
 
@@ -12,6 +12,9 @@ type FlightsSavedListProps = {
 export const FlightsSavedList = (props: FlightsSavedListProps) => {
   const { list } = props;
   const [itemsList, setItemsList] = useState(list);
+
+  useEffect(() => {
+    }, [itemsList]);
 
   const deleteItem = (id: string) => {
     const itemToDelete = list.filter(item => item._id !== id);
