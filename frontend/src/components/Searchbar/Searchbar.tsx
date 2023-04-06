@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useRef, useState } from 'react'
 import { SearchResults } from '../SearchResults/SearchResults';
 import { FlightItemDB } from '../types';
+import './SearchBar.css'
 
 type SearchBarProps = {
   flightsList: FlightItemDB[],
@@ -18,12 +19,12 @@ export const Searchbar = (props: SearchBarProps) => {
     const postApi = () => {
         const options = {
           method: 'GET',
-          url: 'https://skyscanner44.p.rapidapi.com/search-extended',
+          url: process.env.REACT_APP_URL,
           params: {
             adults: '1',
-            origin: 'MUC',
-            destination: 'BER',
-            departureDate: '2023-10-11',
+            origin: 'AMS',
+            destination: 'SHA',
+            departureDate: '2023-08-11',
             currency: 'EUR',
             stops: '0,1,2',
             duration: '50',
@@ -33,8 +34,8 @@ export const Searchbar = (props: SearchBarProps) => {
             returnArriveTo: '23:59'
           },
           headers: {
-            'X-RapidAPI-Key': 'c40ee2892emshadb4df7ecff630cp15bf2djsn4cf8a7b05525',
-            'X-RapidAPI-Host': 'skyscanner44.p.rapidapi.com'
+            'X-RapidAPI-Key': process.env.REACT_APP_RAPIDAPIKEY,
+            'X-RapidAPI-Host': process.env.REACT_APP_RAPIDAPIHOST,
           }
         };
 
@@ -53,31 +54,35 @@ export const Searchbar = (props: SearchBarProps) => {
 
   return (
     <div>
+      <div className='search-bar-container'>
         <h2>Where do you want to go?</h2>
-
-          <input
-            type=""
-            ref={originRef}
-            placeholder='Origin'
-            className='search-input-box'
-          ></input>
-          <input
-            type='text'
-            ref={destinationRef}
-            placeholder='Destination'
-            className='search-input-box'
-          ></input>
-          <input
-            type='text'
-            ref={departureDateRef}
-            placeholder='Departure Date'
-            className='search-input-box'
-          ></input>
-       
-        <button 
-            className='search-button'
-            onClick={() => postApi()}
-            >Search</button>
+          <div>
+            <input
+              type=""
+              ref={originRef}
+              placeholder='Origin'
+              className='search-input-box'
+            ></input>
+            <input
+              type='text'
+              ref={destinationRef}
+              placeholder='Destination'
+              className='search-input-box'
+            ></input>
+            <input
+              type='text'
+              ref={departureDateRef}
+              placeholder='Departure Date'
+              className='search-input-box'
+            ></input>
+          </div>
+          <div>
+            <button 
+                className='search-button'
+                onClick={() => postApi()}
+                >Search</button>
+          </div>
+       </div>
 
         <SearchResults 
           fetchedData={search}

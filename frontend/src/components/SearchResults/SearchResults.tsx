@@ -1,7 +1,6 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { FlightsSavedList } from '../FlightsSavedList/FlightsSavedList'
-import { FetchedData, FlightItem, FlightItemDB} from '../types'
+import { FlightItem, FlightItemDB} from '../types'
 import './SearchResults.css'
 
 type SerchResultsProps = {
@@ -12,10 +11,8 @@ type SerchResultsProps = {
 export const SearchResults = (props: SerchResultsProps) => {
     const { fetchedData, flightList } = props;
     const [list, setList] = useState<FlightItemDB[]>(flightList);
-    const [searchResults, setSearchResults] = useState([]);
     const [buttonMessage, setButtonMessage] = useState('Add Item to your list');
 
-    
     const addItemToList = (index: number) => {
         const addItem = fetchedData.find(item => fetchedData.indexOf(item) === index);
         const itemToAdd: FlightItem = {
@@ -35,9 +32,14 @@ export const SearchResults = (props: SerchResultsProps) => {
                 .then((data: FlightItemDB) => {
                     setList([...list, data]);
                 })
-                // setButtonMessage('Added to list');
             }
         })
+    }
+
+    const deleteItem = (id: string) => {
+    const itemToDelete = list.filter((item:any) => item._id !== id);
+    setList(itemToDelete);
+    fetch(`/api/flights/${id}`, { method: 'DELETE' });
     }
 
   return (
@@ -53,7 +55,10 @@ export const SearchResults = (props: SerchResultsProps) => {
                 >{buttonMessage}</button>
             </div>
         ))}
-        <FlightsSavedList list={list} />
+        <FlightsSavedList 
+            list={list}
+            deleteItem={deleteItem} 
+        />
     </div>
   )
 }
